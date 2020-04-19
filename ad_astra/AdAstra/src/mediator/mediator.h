@@ -6,6 +6,7 @@
 
 void setupConnections();
 void startGame();
+void handleOff();
 void changeDisplayContrast(int8_t by);
 
 #endif

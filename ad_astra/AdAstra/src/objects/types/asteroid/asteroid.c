@@ -14,7 +14,7 @@ bool mineAsteroid(Object* asteroid) {
 	return ++asteroid->as.asteroid.animationFrame == IDLE_FRAME_COUNT;
 }
 
-static void tick(Object* asteroid, uint8_t previousFrameTime) {
+static void tick(Object* asteroid, __attribute__((unused)) uint8_t previousFrameTime) {
 	if (asteroid->as.asteroid.animationFrame < IDLE_FRAME_COUNT) {
 		return;
 	}

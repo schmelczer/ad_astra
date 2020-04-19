@@ -20,6 +20,7 @@ void startFrameLoop(FrameFunction function, uint8_t frameLengthInMilliseconds) {
 		previousFrameTime = milisecondsSinceFrameStart;
 		
 		while (milisecondsSinceFrameStart < frameLengthInMilliseconds) {
+			clearBit(MCUCR, SM1);	// idle mode
 			sleep_cpu();
 		}
 		
@@ -27,6 +28,10 @@ void startFrameLoop(FrameFunction function, uint8_t frameLengthInMilliseconds) {
 	}
 }
 
+void powerOff() {
+	setBit(MCUCR, SM1);		// power-down mode
+	sleep_cpu();
+}
 
 ISR(TIM0_COMPA_vect) {
 	milisecondsSinceFrameStart++;

@@ -10,7 +10,7 @@
 
 // Between two consecutive actions (or movements)
 // there has to be at least this many milliseconds
-#define TIME_BETWEEN_ACTION_CHANGE 40
+#define TIME_BETWEEN_ACTION_CHANGE 50
 
 typedef enum {
 	noAction = 0,

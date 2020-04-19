@@ -43,10 +43,11 @@ SpaceshipPart spaceshipParts[SPACESHIP_PART_COUNT];
 const Prototype Spaceship;
 
 typedef enum {
-	hasBeds = 1,
-	hasTurret = 3,
-	hasTable = 5,
-	hasFullCrew = 9
+	hasBeds = 2,
+	hasTurret = 5,
+	hasHalfCrew = 8,
+	hasFullCrew = 15,
+	hasTable = 25,
 } Progress;
 
 struct _spaceship_t {
@@ -65,6 +66,9 @@ bool isOnLowerFloor(Rectangle boundingBox);
 bool isOnLadder(Rectangle boundingBox);
 void onAsteroidMined();
 bool isSpaceshipPartActivated(SpaceshipPart* part);
+
+bool isSpaceshipDestroyed();
+void destroySpaceship();
 
 void shootTurretOfSpaceship(); 
 Action getPossibleActionFromSpaceship(Object* astronaut);

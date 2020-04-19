@@ -24,7 +24,7 @@ static Star createStarOnTheRight() {
 	};
 }
 
-static void tick(Object* background, uint8_t previousFrameTime) {
+static void tick(Object* background, __attribute__((unused)) uint8_t previousFrameTime) {
 	background->as.background.movementState++;
 	for (uint8_t i = 0; i < STAR_COUNT; i++) {
 		switch (i % 3) {

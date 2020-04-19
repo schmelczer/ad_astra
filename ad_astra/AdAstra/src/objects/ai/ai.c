@@ -10,11 +10,14 @@
 #include "../../util/random/random.h"
 #include "../../driver/display/display.h"
 
+
 #define AI_ACTION_COUNT 5
 
-
-typedef bool (*Predicate)(Rectangle*, Object*);
+typedef bool (*Predicate)(Rectangle*, Object*, uint8_t);
 typedef void (*Execution)(Object*);
+
+static uint8_t timeSinceLastAction;
+
 
 typedef struct {
 	Predicate predicate;
@@ -75,24 +78,41 @@ static void carefullyMoveSpaceship(Object* astronaut, Vec2 target) {
 	}
 }
 
-static bool shouldShootTurret(
+static void makeAiAstronautDoAction(Object* astronaut) {
+	if (timeSinceLastAction > AI_ACTION_INTERVAL) {
+		makeAstronautDoAction(astronaut);
+		timeSinceLastAction = 0;
+	}
+}
+
+static bool shouldControlTurret(
 	__attribute__((unused)) Rectangle* boundingBox,
-	__attribute__((unused)) Object* astronaut
+	__attribute__((unused)) Object* astronaut,
+	__attribute__((unused)) uint8_t astronautId
 ) {
-	return getIntersectingObjectOfType(
+	return getCountOf(&Asteroid) > 0;
+}
+
+static void executeControlTurret(Object* astronaut) {
+	if (getIntersectingObjectOfType(
 		(Rectangle){
 			add(TURRET_POSITION, spaceshipObject->position),
 			(Vec2){63, 1}
 		},
 		&Asteroid
-	);
+	)) {
+		makeAiAstronautDoAction(astronaut);
+	};
 }
 
 static bool shouldControlSpaceship(
 	__attribute__((unused)) Rectangle* boundingBox, 
-	__attribute__((unused)) Object* astronaut
+	__attribute__((unused)) Object* astronaut,
+	uint8_t astronautId
 ) {
-	return getCountOf(&Asteroid) > 0;
+	return    getCountOf(&Asteroid) > 0 
+		   && astronautId == 1
+		   && spaceshipObject->as.spaceship.healthLoss < MAX_HEALTH / 4 * 3;
 }
 
 static void executeControlSpaceship(Object* astronaut) {
@@ -105,7 +125,7 @@ static void executeControlSpaceship(Object* astronaut) {
 	);
 }
 
-static bool shouldRepairSpaceship(Rectangle* boundingBox, Object* astronaut) {
+static bool shouldRepairSpaceship(Rectangle* boundingBox, Object* astronaut, __attribute__((unused)) uint8_t astronautId) {
 	return (
 		(
 			areIntersecting(*boundingBox, getBoundingBox(astronaut)) &&
@@ -115,9 +135,9 @@ static bool shouldRepairSpaceship(Rectangle* boundingBox, Object* astronaut) {
 	);
 }
 
-static bool shouldCenterSpaceship(Rectangle* boundingBox, Object* astronaut) {
+static bool shouldCenterSpaceship(Rectangle* boundingBox, Object* astronaut, __attribute__((unused)) uint8_t astronautId) {
 	return (
-		!actions[0].isSomeoneDoingThis && 
+		!actions[1].isSomeoneDoingThis && 
 		(
 			areIntersecting(*boundingBox, getBoundingBox(astronaut)) ||
 			getCenter(getBoundingBox(spaceshipObject)).x != getCenter(WINDOW).x ||
@@ -135,7 +155,8 @@ static void executeCenterSpaceship(Object* astronaut) {
 
 static bool shouldSocialize(
 	__attribute__((unused)) Rectangle* boundingBox, 
-	__attribute__((unused)) Object* astronaut
+	__attribute__((unused)) Object* astronaut,
+	__attribute__((unused)) uint8_t astronautId
 ) {
 	return true;
 }
@@ -148,6 +169,13 @@ static void executeSocialize(Object* astronaut) {
 
 static AIAction actions[AI_ACTION_COUNT] = {
 	(AIAction) {
+		.predicate = shouldRepairSpaceship,
+		.execution = makeAiAstronautDoAction,
+		.spaceshipPart = spaceshipParts + BEDS_INDEX,
+		.onlyOneAstronautCanDoIt = true,
+		.deltaCenter = {2, 0}
+	},
+	(AIAction) {
 		.predicate = shouldControlSpaceship,
 		.execution = executeControlSpaceship,
 		.spaceshipPart = spaceshipParts + COMMAND_PANEL_INDEX,
@@ -155,15 +183,8 @@ static AIAction actions[AI_ACTION_COUNT] = {
 		.deltaCenter = {-3, 0}
 	},
 	(AIAction) {
-		.predicate = shouldRepairSpaceship,
-		.execution = makeAstronautDoAction,
-		.spaceshipPart = spaceshipParts + BEDS_INDEX,
-		.onlyOneAstronautCanDoIt = true,
-		.deltaCenter = {2, 0}
-	},
-	(AIAction) {
-		.predicate = shouldShootTurret,
-		.execution = makeAstronautDoAction,
+		.predicate = shouldControlTurret,
+		.execution = executeControlTurret,
 		.spaceshipPart = spaceshipParts + TURRET_CONTROLLER_INDEX,
 		.onlyOneAstronautCanDoIt = true,
 		.deltaCenter = {-3, 0}
@@ -185,20 +206,24 @@ static AIAction actions[AI_ACTION_COUNT] = {
 };
 
 void handleAI() {
+	timeSinceLastAction++;
+	uint8_t astronautCount = 0;
 	for (uint8_t j = 0; j < ACTION_COUNT; j++) {
 		actions[j].isSomeoneDoingThis = false;
 	}
 	
 	for (uint8_t i = 0; i < OBJECT_COUNT; i++) {
 		if (objects[i].prototype == &Astronaut && objects + i != character) {
+			astronautCount++;
 			for (uint8_t j = 0; j < ACTION_COUNT; j++) {
 				AIAction* currentAction = actions + j;
 				Rectangle boundingBox = getBoundingBoxOfSpaceshipPart(currentAction->spaceshipPart);
+				
 				Object* astronautIntersectingBoundingBox = getIntersectingObjectOfType(boundingBox, &Astronaut);
 				if (
 					isSpaceshipPartActivated(currentAction->spaceshipPart) &&
 					(!currentAction->onlyOneAstronautCanDoIt || (!currentAction->isSomeoneDoingThis && astronautIntersectingBoundingBox != character)) &&
-					 currentAction->predicate(&boundingBox, objects + i)
+					 currentAction->predicate(&boundingBox, objects + i, astronautCount)
 				) {
 					if (!areIntersecting(boundingBox, getBoundingBox(objects + i))) {
 						carefullyMoveAstronaut(objects + i, add(getCenter(boundingBox), currentAction->deltaCenter));

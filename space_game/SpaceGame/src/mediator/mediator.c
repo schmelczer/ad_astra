@@ -45,11 +45,11 @@ static bool frameFunction(uint8_t previousFrameTime) {
 			return false;
 		};
 	}
-		
+	
+	tickObjects(previousFrameTime);
 	handleCommands();
 	handleAI();
 	generateEvents();
-	tickObjects(previousFrameTime);
 	drawFrame();
 	
 	return true;

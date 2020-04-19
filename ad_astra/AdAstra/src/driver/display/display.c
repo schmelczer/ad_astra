@@ -38,6 +38,13 @@ void setDisplayContrast(uint8_t value) {
 	dataMode();
 }
 
+void turnDisplayOnOff(bool shouldBeOn) {
+	commandMode();
+	sendByteOnSPI(0x8D | shouldBeOn);		// set charge pump on/off
+	sendByteOnSPI(0x10 | shouldBeOn << 2);	// set charge pump on/off
+	sendByteOnSPI(0xAE | shouldBeOn);		// turn display sleep on/off
+}
+
 void initializeDisplay(DrawFunction drawEverything) {
 	setOutputPin(DISPLAY_RESET_OUTPUT_PIN, false);
 	for (volatile uint8_t i = 0; i != 255; i++)

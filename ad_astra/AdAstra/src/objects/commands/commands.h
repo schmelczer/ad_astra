@@ -1,6 +1,9 @@
 ﻿#ifndef COMMANDS_H
 #define COMMANDS_H
 
+
+#include <stdbool.h>
+
 // There can be no more than COMMAND_BUFFER_SIZE commands
 // waiting for processing simultaneously 
 #define COMMAND_BUFFER_SIZE 8
@@ -15,6 +18,8 @@
 typedef enum {
 	noCommand = 0,
 	repeat = 1,
+	turnOff = 61,
+	reset = 157,
 	increaseContrast = 87,
 	decreaseContrast = 31,
 	moveUp = 231,

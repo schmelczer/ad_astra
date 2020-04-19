@@ -10,7 +10,8 @@
 #define REPEAT_CODE 1
 
 typedef void (*OnCommandReceived)(uint8_t);
+typedef void (*OnReceiveStarted)();
 
-void initializeInfra(OnCommandReceived onCommandReceived);
+void initializeInfra(OnCommandReceived onCommandReceived, OnReceiveStarted onReceiveStarted);
 
 #endif

@@ -8,7 +8,7 @@
 #include "../../object_container/object_container.h"
 
 
-static void tick(Object* heart, uint8_t previousFrameTime) {
+static void tick(Object* heart, __attribute__((unused)) uint8_t previousFrameTime) {
 	if (++heart->as.heart.timeSinceLastChange == HEART_ANIMATION_INTERVAL) {
 		heart->as.heart.animationFrame = (heart->as.heart.animationFrame + 1) % HEART_FRAME_COUNT;
 		heart->as.heart.timeSinceLastChange = 0;

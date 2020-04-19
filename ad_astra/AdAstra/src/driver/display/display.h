@@ -21,6 +21,8 @@ typedef void (*DrawFunction)(Rectangle);
 void initializeDisplay(DrawFunction drawEverything);
 void setDisplayContrast(uint8_t value);
 
+void turnDisplayOnOff(bool shouldBeOn);
+
 void startIntersectionTest();
 bool endIntersectionTest();
 

@@ -10,4 +10,6 @@ typedef bool (*FrameFunction)(uint8_t);
 // frameFunction gets previousFrameTime (in milliseconds) as argument
 void startFrameLoop(FrameFunction function, uint8_t frameLengthInMilliseconds);
 
+void powerOff();
+
 #endif

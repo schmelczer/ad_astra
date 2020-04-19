@@ -45,7 +45,7 @@ static void generate(Prototype const* type, Predicate predicate) {
 bool generateAstronautPredicate(Rectangle* proposedBoundingBox) {
 	return (
 		(
-			(getCountOf(&Astronaut) == 1 && spaceshipObject->as.spaceship.progress >= hasTable) ||
+			(getCountOf(&Astronaut) == 1 && spaceshipObject->as.spaceship.progress >= hasHalfCrew) ||
 			(getCountOf(&Astronaut) == 2 && spaceshipObject->as.spaceship.progress >= hasFullCrew)
 		) &&
 		getIntersectingObjectOfType(*proposedBoundingBox, &Astronaut) == NULL &&

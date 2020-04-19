@@ -145,6 +145,14 @@ bool isSpaceshipPartActivated(SpaceshipPart* part) {
 	return part->alwaysActiveDoNotDraw || ((spaceshipObject->as.spaceship.activatedParts >> (part - spaceshipParts)) & 1);
 }
 
+bool isSpaceshipDestroyed() {
+	return spaceshipObject->as.spaceship.healthLoss >= MAX_HEALTH;
+}
+
+void destroySpaceship() {
+	spaceshipObject->as.spaceship.healthLoss = MAX_HEALTH;
+}
+
 static inline void drawSpaceshipHealthBar() {
 	uint8_t actualBarLength = spaceshipObject->as.spaceship.healthLoss * BAR_LENGTH / MAX_HEALTH;
 	drawFilledRectangle(

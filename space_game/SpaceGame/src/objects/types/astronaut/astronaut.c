@@ -66,8 +66,9 @@ void moveAstronaut(Object* astronaut, Vec2 direction) {
 	setWasDoingAction(astronaut, false);
 	
 	if (getIsControllingSpaceship(astronaut)) {
-		moveSpaceship(direction);
-		} else {
+		moveSpaceship((Vec2){direction.x, 0});
+		moveSpaceship((Vec2){0, direction.y});
+	} else {
 		Vec2 proposedPosition = add(astronaut->position, direction);
 		Rectangle proposedBoundingBox = (Rectangle){proposedPosition, getSize(astronaut)};
 		if (isOnboard(proposedBoundingBox)) {

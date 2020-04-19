@@ -9,7 +9,7 @@
 
 
 
-static void tick(Object* bullet, uint8_t previousFrameTime) {
+static void tick(Object* bullet, __attribute__((unused)) uint8_t previousFrameTime) {
 	if (bullet->as.bullet.wereIntersectingInThePreviousFrame) {
 		clearObject(bullet);
 		return;

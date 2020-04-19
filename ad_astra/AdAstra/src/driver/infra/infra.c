@@ -28,6 +28,7 @@ static struct {
 	ProtocolState protocolState;
 	CommandState commandState;
 	OnCommandReceived onCommandReceived;
+	OnReceiveStarted onReceiveStarted;
 } infra;
 
 
@@ -81,6 +82,8 @@ static inline uint8_t isIrOn() {
 }
 
 ISR(PCINT0_vect) {
+	infra.onReceiveStarted();
+		
 	switch (infra.protocolState) {
 		case idle:
 			if (isIrOn()) {
@@ -136,9 +139,10 @@ ISR(TIM0_COMPB_vect) {
 	}
 }
 
-void initializeInfra(OnCommandReceived onCommandReceived) {
+void initializeInfra(OnCommandReceived onCommandReceived, OnReceiveStarted onReceiveStarted) {
 	setBit(PORTB, IR_PIN);	// enable pull-up
 	setBit(PCMSK, IR_PIN);	// specific pin change interrupt enable
 	setBit(GIMSK, PCIE);	// global on pin change interrupt enable;
 	infra.onCommandReceived = onCommandReceived;
+	infra.onReceiveStarted = onReceiveStarted;
 }

@@ -21,6 +21,8 @@ static struct {
 	uint8_t contrast;
 	uint8_t framesSinceLastSave;
 	uint8_t deathDownCounter;
+	bool isSleeping;
+	uint8_t receivedWakeUpBitCount;
 } state = {
 	.contrast = 255
 };
@@ -34,24 +36,45 @@ static inline void saveGame() {
 	}
 }
 
-static bool frameFunction(uint8_t previousFrameTime) {
-	disableWritingEEPROM();
-	
-	if (spaceshipObject->as.spaceship.healthLoss >= MAX_HEALTH) {
+static inline bool handleDeathAnimation() {
+	if (isSpaceshipDestroyed()) {
 		setDisplayContrast(state.contrast * (state.deathDownCounter / DEATH_SCREEN_LENGTH));
 		if (state.deathDownCounter-- == 0) {
 			invalidateEEPROM();
 			return false;
 		};
 	}
-		
-	handleCommands();
-	handleAI();
-	generateEvents();
-	tickObjects(previousFrameTime);
-	drawFrame();
-	enableWritingEEPROM();
-	saveGame();
+	return true;
+}
+
+void handleOff() {
+	turnDisplayOnOff(false);
+	state.isSleeping = true;
+}
+
+void handleOn() {
+	if (state.isSleeping && ++state.receivedWakeUpBitCount > 50) {
+		turnDisplayOnOff(true);
+		state.isSleeping = false;
+		state.receivedWakeUpBitCount = 0;
+	}
+}
+
+
+static bool frameFunction(uint8_t previousFrameTime) {
+	if (state.isSleeping) {
+		powerOff();
+	} else {
+		disableWritingEEPROM();
+		tickObjects(previousFrameTime);
+		handleCommands();
+		handleAI();
+		generateEvents();
+		drawFrame();
+		enableWritingEEPROM();
+		saveGame();
+		return handleDeathAnimation();
+	}
 	
 	return true;
 }
@@ -71,7 +94,7 @@ static inline void createObjects() {
 void setupConnections() {
 	initializeHardwareAccess();
 	initializeRedundantStorage();
-	initializeInfra(addCommand);
+	initializeInfra(addCommand, handleOn);
 	initializeDisplay(drawObjects);
 }
 
@@ -85,7 +108,7 @@ void startGame() {
 void changeDisplayContrast(int8_t by) {
 	if (by < 0) {
 		state.contrast = (state.contrast < -by) ? 0 : (state.contrast + by);
-		} else {
+	} else {
 		state.contrast = (state.contrast > 255 - by) ? 255 : (state.contrast + by);
 	}
 	

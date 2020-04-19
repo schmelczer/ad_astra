@@ -1,6 +1,7 @@
 ﻿#include "commands.h"
 
 #include "../../objects/object_container/object_container.h"
+#include "../../objects/types/spaceship/spaceship.h"
 #include "../../mediator/mediator.h"
 
 
@@ -35,7 +36,7 @@ void handleCommands() {
 		} else {
 			commands.previous = next;
 		}
-			
+		
 		switch(next) {
 			case increaseContrast:
 				changeDisplayContrast(CONTRAST_STEP);
@@ -54,6 +55,14 @@ void handleCommands() {
 				break;
 			case moveDown:
 				moveAstronaut(character, directions[south]);
+				break;
+			case reset:
+				destroySpaceship();
+				commands.previous = noAction;
+				break;
+			case turnOff:
+				handleOff();
+				commands.previous = noAction;
 				break;
 			case action:
 				makeAstronautDoAction(character);
