@@ -1,0 +1,6 @@
+**/Debug
+**/Release
+**/__pycache__
+**/.idea
+**/.vs
+**/bin

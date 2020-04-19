@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>dce6c7e3-ee26-4d79-826b-08594b9ad897</ProjectGuid>
+    <avrdevice>ATtiny85</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>TestProject</AssemblyName>
+    <Name>TestProject</Name>
+    <RootNamespace>TestProject</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>false</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>false</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>false</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <ResetRule>0</ResetRule>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.47.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.ispmk2</avrtool>
+    <avrtoolserialnumber>000200212345</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x1E930B</avrdeviceexpectedsignature>
+    <avrtoolinterface>ISP</avrtoolinterface>
+    <avrtoolinterfaceclock>125000</avrtoolinterfaceclock>
+    <com_atmel_avrdbg_tool_ispmk2>
+      <ToolOptions>
+        <InterfaceProperties>
+          <IspClock>125000</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.ispmk2</ToolType>
+      <ToolNumber>000200212345</ToolNumber>
+      <ToolName>AVRISP mkII</ToolName>
+    </com_atmel_avrdbg_tool_ispmk2>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
+    <custom>
+      <ToolOptions>
+        <InterfaceProperties>
+          <IspClock>125000</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType>custom</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>Custom Programming Tool</ToolName>
+    </custom>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.Device>-mmcu=attiny85 -B "%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\gcc\dev\attiny85"</avrgcc.common.Device>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.SubroutinesFunctionPrologues>True</avrgcc.compiler.general.SubroutinesFunctionPrologues>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>NDEBUG</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\include</Value>
+            <Value>../src/macros</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.compiler.warnings.ExtraWarnings>True</avrgcc.compiler.warnings.ExtraWarnings>
+        <avrgcc.compiler.warnings.Undefined>True</avrgcc.compiler.warnings.Undefined>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\include</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+      </AvrGcc>
+    </ToolchainSettings>
+    <OutputFileName>space_game</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.Device>-mmcu=attiny85 -B "%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\gcc\dev\attiny85"</avrgcc.common.Device>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>DEBUG</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\include</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\include</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+        <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+      </AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'WithUART' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.Device>-mmcu=attiny85 -B "%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\gcc\dev\attiny85"</avrgcc.common.Device>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>NDEBUG</Value>
+            <Value>UART_ENABLED</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\include</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.compiler.warnings.ExtraWarnings>True</avrgcc.compiler.warnings.ExtraWarnings>
+        <avrgcc.compiler.warnings.Undefined>True</avrgcc.compiler.warnings.Undefined>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATtiny_DFP\1.3.229\include</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+      </AvrGcc>
+    </ToolchainSettings>
+    <OutputFileName>space_game</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputPath>bin\WithUART\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\driver\sleep\sleep.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\uart\receive.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\uart\receive.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\uart\transmit.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\uart\transmit.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\eeprom\eeprom.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\hardware_access.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\hardware_access.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\output_pins\output_pins.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\output_pins\output_pins.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\power_saving\power_saving.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\spi\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\timing\timing.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hardware_access\timing\timing.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\display\display.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\display\display.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\infra\infra.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\infra\infra.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver\sleep\sleep.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\macros\bitwise.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\macros\math.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\macros\null.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\mediator\mediator.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\mediator\mediator.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\ai\ai.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\ai\ai.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\commands\commands.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\commands\commands.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\event_generator\event_generator.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\event_generator\event_generator.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\object.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\object.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\object_container\object_container.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\object_container\object_container.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\prototype.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\asteroid\asteroid.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\asteroid\asteroid.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\astronaut\astronaut.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\astronaut\astronaut.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\background\background.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\background\background.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\bullet\bullet.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\bullet\bullet.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\heart\heart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\heart\heart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\spaceship\spaceship.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\spaceship\spaceship.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\sprites.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\objects\types\sprites.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\util\random\random.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\util\random\random.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\util\rectangle\rectangle.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\util\rectangle\rectangle.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\util\vec2\vec2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\util\vec2\vec2.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src" />
+    <Folder Include="src\controller\" />
+    <Folder Include="src\driver\" />
+    <Folder Include="src\driver\display\" />
+    <Folder Include="src\driver\infra\" />
+    <Folder Include="src\driver\uart" />
+    <Folder Include="src\driver\sleep\" />
+    <Folder Include="src\hardware_access\" />
+    <Folder Include="src\hardware_access\eeprom\" />
+    <Folder Include="src\hardware_access\output_pins" />
+    <Folder Include="src\hardware_access\power_saving\" />
+    <Folder Include="src\hardware_access\spi\" />
+    <Folder Include="src\hardware_access\timing\" />
+    <Folder Include="src\macros\" />
+    <Folder Include="src\mediator\" />
+    <Folder Include="src\objects\" />
+    <Folder Include="src\objects\ai\" />
+    <Folder Include="src\objects\commands\" />
+    <Folder Include="src\objects\event_generator\" />
+    <Folder Include="src\objects\object_container\" />
+    <Folder Include="src\objects\types\" />
+    <Folder Include="src\objects\types\asteroid\" />
+    <Folder Include="src\objects\types\astronaut\" />
+    <Folder Include="src\objects\types\background\" />
+    <Folder Include="src\objects\types\bullet\" />
+    <Folder Include="src\objects\types\heart\" />
+    <Folder Include="src\objects\types\spaceship\" />
+    <Folder Include="src\util\" />
+    <Folder Include="src\util\random\" />
+    <Folder Include="src\util\rectangle\" />
+    <Folder Include="src\util\vec2\" />
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>

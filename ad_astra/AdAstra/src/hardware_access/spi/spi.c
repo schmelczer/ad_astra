@@ -1,0 +1,30 @@
+﻿#include "spi.h"
+
+#include <avr/interrupt.h>
+
+#define SWAP_BIT (BV(USIWM0) | BV(USICLK) | BV(USITC) | BV(USICS1))
+
+
+void sendByteOnSPI(uint8_t byte) {
+	USIDR = byte;
+	
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+	USICR = SWAP_BIT;
+}
