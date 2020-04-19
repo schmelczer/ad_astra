@@ -46,7 +46,7 @@ bool generateAstronautPredicate(Rectangle* proposedBoundingBox) {
 	return (
 		(
 			(getCountOf(&Astronaut) == 1 && spaceshipObject->as.spaceship.progress >= hasHalfCrew) ||
-			(getCountOf(&Astronaut) == 2 && spaceshipObject->as.spaceship.progress >= hasFullCrew)
+			(getCountOf(&Astronaut) == 2 && spaceshipObject->as.spaceship.progress >= hasTable)
 		) &&
 		getIntersectingObjectOfType(*proposedBoundingBox, &Astronaut) == NULL &&
 		isOnboard(*proposedBoundingBox)

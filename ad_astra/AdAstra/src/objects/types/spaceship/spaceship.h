@@ -46,8 +46,7 @@ typedef enum {
 	hasBeds = 2,
 	hasTurret = 5,
 	hasHalfCrew = 8,
-	hasFullCrew = 15,
-	hasTable = 25,
+	hasTable = 15
 } Progress;
 
 struct _spaceship_t {

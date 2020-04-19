@@ -43,6 +43,7 @@ void turnDisplayOnOff(bool shouldBeOn) {
 	sendByteOnSPI(0x8D | shouldBeOn);		// set charge pump on/off
 	sendByteOnSPI(0x10 | shouldBeOn << 2);	// set charge pump on/off
 	sendByteOnSPI(0xAE | shouldBeOn);		// turn display sleep on/off
+	dataMode();
 }
 
 void initializeDisplay(DrawFunction drawEverything) {

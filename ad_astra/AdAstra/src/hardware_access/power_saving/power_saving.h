@@ -7,7 +7,7 @@
 
 inline void initializePowerSaving() {
 	setBit(ACSR, ACD);				// disable ADC to save power
-	PRR = BV(PRTIM1) | BV(PRADC);	// disable power of timer1 and ADC
+	PRR = BV(PRTIM1) | BV(PRADC);	// disable power to timer1 and ADC
 }
 
 #endif

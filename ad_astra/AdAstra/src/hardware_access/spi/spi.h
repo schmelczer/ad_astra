@@ -12,6 +12,4 @@ inline void initializeSPI() {
 	DDRB |= BV(DO_PIN) | BV(USCK_PIN);	// set pin directions for MOSI and SCK
 }
 
-void sendByteOnSPI(uint8_t byte);
-
 #endif

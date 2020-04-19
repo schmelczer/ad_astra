@@ -6,7 +6,6 @@
 #include "bitwise.h"
 #include "../../hardware_access/hardware_access.h"
 #include "../uart/receive.h"
-#include "../uart/transmit.h"
 
 
 // (0.5625 + (0.5625 + 1.6875) / 2) / 1000 / timer interval
@@ -49,7 +48,6 @@ static void saveCurrentByte() {
 			break;
 		case significantByte:
 			infra.onCommandReceived(byte);
-			sendUintOnUartAsync(byte);
 			infra.commandState = waitingForEndOfCommand;
 			break;
 		case waitingForEndOfCommand:
