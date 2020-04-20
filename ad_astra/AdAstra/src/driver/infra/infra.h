@@ -14,10 +14,11 @@
 #define REPEAT_CODE 1
 
 typedef void (*OnCommandReceived)(uint8_t);
+typedef void (*OnReceiveStarted)();
 
 // Initialize infra and call onCommandReceived with every received byte
 // Call onCommandReceived with the argument REPEAT_CODE if a repeat code 
 // has been received.
-void initializeInfra(OnCommandReceived onCommandReceived);
+void initializeInfra(OnCommandReceived onCommandReceived, OnReceiveStarted onReceiveStarted);
 
 #endif

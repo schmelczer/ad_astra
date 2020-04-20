@@ -42,6 +42,9 @@ void setDisplayContrast(uint8_t value);
 // Clear buffer and wasIntersection bit
 void startIntersectionTest();
 
+// Make the display go to / return from sleep
+void turnDisplayOnOff(bool shouldBeOn);
+
 // Return wasIntersection bit
 bool endIntersectionTest();
 

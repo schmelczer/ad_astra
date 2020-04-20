@@ -134,7 +134,7 @@ Action getPossibleActionFromSpaceship(Object* astronaut) {
 	return noAction;
 }
 
-void tick(Object* spaceship, uint8_t previousFrameTime) {
+void tick(Object* spaceship, __attribute__((unused)) uint8_t previousFrameTime) {
 	flickerState = !flickerState;
 	if (spaceship->as.spaceship.healthLoss >= MAX_HEALTH) {
 		spaceship->as.spaceship.healthLoss++;
@@ -191,7 +191,10 @@ static inline void drawExhaust(Rectangle compositingWindow) {
 
 static inline void drawGlitches() {
 	for (uint8_t i = 0; i < spaceshipObject->as.spaceship.healthLoss - MAX_HEALTH; i++) {
-		Rectangle r = translateRectangle((Rectangle){(Vec2){getRandomNumber() % SPACESHIP_SIZE.x, getRandomNumber() % SPACESHIP_SIZE.y}, (Vec2){8, 8}}, spaceshipObject->position);
+		Rectangle r = translateRectangle(
+			(Rectangle){(Vec2){getRandomNumber() % SPACESHIP_SIZE.x, getRandomNumber() % SPACESHIP_SIZE.y}, (Vec2){8, 8}},
+			 spaceshipObject->position
+		);
 		if (areIntersecting(r, WINDOW)) {
 			drawFilledRectangle(r, 0xFF, 0x00);
 		}

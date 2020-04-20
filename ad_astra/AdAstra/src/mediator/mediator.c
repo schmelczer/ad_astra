@@ -62,9 +62,9 @@ void handleOn() {
 
 
 static bool frameFunction(uint8_t previousFrameTime) {
-	if (state.isSleeping) {
+	/*if (state.isSleeping) {
 		powerOff();
-	} else {
+	} else {*/
 		disableWritingEEPROM();
 		tickObjects(previousFrameTime);
 		handleCommands();
@@ -74,7 +74,7 @@ static bool frameFunction(uint8_t previousFrameTime) {
 		enableWritingEEPROM();
 		saveGame();
 		return handleDeathAnimation();
-	}
+	//}
 	
 	return true;
 }
