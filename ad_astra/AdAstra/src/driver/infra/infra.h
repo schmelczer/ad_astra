@@ -10,7 +10,7 @@
 */
 
 #define INFRA_ADDRESS 255
-#define IR_PIN PB4
+#define IR_PIN PB3
 #define REPEAT_CODE 1
 
 typedef void (*OnCommandReceived)(uint8_t);

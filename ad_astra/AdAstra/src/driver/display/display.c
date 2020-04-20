@@ -95,7 +95,7 @@ static void compositePixelColumn(uint8_t x, uint8_t invertedMask, uint8_t fill) 
 	display.compositingBuffer[x] = (display.compositingBuffer[x] & (~invertedMask)) | fill;
 }
 
-void drawBitmapFromProgMem(Rectangle boundingBox, uint16_t const data[boundingBox.size.x][(boundingBox.size.y + 7) / 8], bool isMirrored) {
+void drawBitmapFromProgMem(Rectangle boundingBox, uint16_t const bitmap[boundingBox.size.x][(boundingBox.size.y + 7) / 8], bool isMirrored) {
 	boundingBox.position = substract(boundingBox.position, display.compositingWindow.position);
 
 	uint8_t spriteY = max(0, -boundingBox.position.y);
@@ -103,14 +103,14 @@ void drawBitmapFromProgMem(Rectangle boundingBox, uint16_t const data[boundingBo
 
 	for (uint8_t x = max(0, -boundingBox.position.x); x < boundingBox.size.x && boundingBox.position.x + x < DISPLAY_WIDTH_IN_PIXELS; x++) {
 		uint8_t spriteX = isMirrored ? boundingBox.size.x - x - 1 : x;
-		uint16_t currentPixelColumn = loadWordEEPROM(&data[spriteX][spriteYByte]);
+		uint16_t currentPixelColumn = loadWordEEPROM(&bitmap[spriteX][spriteYByte]);
 		
 		uint8_t fill, invertedMask;
 		if (boundingBox.position.y >= 0) {
 			fill = (currentPixelColumn & 0x00FF) << boundingBox.position.y;
 			invertedMask = currentPixelColumn >> 8 << boundingBox.position.y;
 		} else {
-			uint16_t lowerPixelColumn = spriteYByte + 1 < (boundingBox.size.y + 7) / 8 ? loadWordEEPROM(&data[spriteX][spriteYByte + 1]) : 0;
+			uint16_t lowerPixelColumn = spriteYByte + 1 < (boundingBox.size.y + 7) / 8 ? loadWordEEPROM(&bitmap[spriteX][spriteYByte + 1]) : 0;
 			uint8_t shift = spriteY % 8;
 			uint8_t inverseShift = 8 - shift;
 			
