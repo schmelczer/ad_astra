@@ -32,7 +32,7 @@ static AIAction actions[AI_ACTION_COUNT];
 
 
 static Vec2 whichDirectionToMove(Object* astronaut, Vec2 position) {
-	bool const isTargetOnUpperFloor = isOnUpperFloor((Rectangle){position, (Vec2){0, 0}});		// else it's on the lower floor
+	bool const isTargetOnUpperFloor = isOnUpperFloor((Rectangle){position, (Vec2){0, 0}});		/// else it's on the lower floor
 
 	Vec2 const ladder = add(LADDER_BOUNDING_BOX.position, spaceshipObject->position);
 	

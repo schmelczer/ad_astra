@@ -14,9 +14,9 @@
 #include "../driver/uart/receive.h"
 
 
-#define TARGET_FRAME_DURATION 20	// ms
-#define DEATH_SCREEN_LENGTH 50		// frames
-#define REPORT_INTERVAL 50			// every x frames
+#define TARGET_FRAME_DURATION 20	/// ms
+#define DEATH_SCREEN_LENGTH 50		/// frames
+#define REPORT_INTERVAL 50			/// every x frames
 
 static struct {
 	uint8_t contrast;

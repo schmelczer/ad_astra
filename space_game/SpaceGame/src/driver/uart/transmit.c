@@ -10,7 +10,7 @@ static struct {
 	char bytes[ASYNC_BUFFER_SIZE];
 	uint8_t start;
 	uint8_t end;
-	// 0 - start bit, 1-8 word bits, 9 - end bit 
+	/// 0 - start bit, 1-8 word bits, 9 - end bit 
 	uint8_t currentMaskPosition;
 } uartTransmitter;
 

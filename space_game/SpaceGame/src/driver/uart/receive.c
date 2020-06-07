@@ -8,7 +8,7 @@
 
 static struct {
 	uint16_t message;
-	uint8_t bitPosition;		// goes from 0 to 9
+	uint8_t bitPosition;		/// goes from 0 to 9
 	bool previousValue;
 	uint8_t previousTimestamp;
 	OnCommandReceived onCommandReceived;
@@ -17,8 +17,8 @@ static struct {
 };
 
 void initializeUartReceive(OnCommandReceived onCommandReceived) {
-	setBit(PORTB, RECEIVE_PIN);		// setup pull-up
-	setBit(PCMSK, RECEIVE_PIN);		// enable interrupt on pin
+	setBit(PORTB, RECEIVE_PIN);		/// setup pull-up
+	setBit(PCMSK, RECEIVE_PIN);		/// enable interrupt on pin
 	uartReceive.onCommandReceived = onCommandReceived;
 }
 

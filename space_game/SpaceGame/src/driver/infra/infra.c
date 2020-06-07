@@ -8,11 +8,11 @@
 #include "../uart/receive.h"
 
 
-// (0.5625 + (0.5625 + 1.6875) / 2) / 1000 / timer interval
+/// (0.5625 + (0.5625 + 1.6875) / 2) / 1000 / timer interval
 #define MEAN_OF_0_1_BIT_TIMES 53
-// 9 / 2 / 1000 / timer interval
+/// 9 / 2 / 1000 / timer interval
 #define MAYBE_ONE_CHECK_TIME 141
-// some large value
+/// some large value
 #define TIMEOUT 254
 
 typedef enum {
@@ -139,8 +139,8 @@ ISR(TIM0_COMPB_vect) {
 }
 
 void initializeInfra(OnCommandReceived onCommandReceived) {
-	setBit(PORTB, IR_PIN);	// enable pull-up
-	setBit(PCMSK, IR_PIN);	// specific pin change interrupt enable
-	setBit(GIMSK, PCIE);	// global on pin change interrupt enable;
+	setBit(PORTB, IR_PIN);	/// enable pull-up
+	setBit(PCMSK, IR_PIN);	/// specific pin change interrupt enable
+	setBit(GIMSK, PCIE);	/// global on pin change interrupt enable;
 	infra.onCommandReceived = onCommandReceived;
 }

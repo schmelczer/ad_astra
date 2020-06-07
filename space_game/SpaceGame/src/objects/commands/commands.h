@@ -1,17 +1,17 @@
 ﻿#ifndef COMMANDS_H
 #define COMMANDS_H
 
-// There can be no more than COMMAND_BUFFER_SIZE commands
-// waiting for processing simultaneously
+/// There can be no more than COMMAND_BUFFER_SIZE commands
+/// waiting for processing simultaneously
 #define COMMAND_BUFFER_SIZE 8
 
-// increaseContrast and decreaseContrast changes the contrast
-// with this value
+/// increaseContrast and decreaseContrast changes the contrast
+/// with this value
 #define CONTRAST_STEP 15
 
-// The possible inputs of the system
-// Coincidentally these are the codes of the IR remote
-// controller's buttons.
+/// The possible inputs of the system
+/// Coincidentally these are the codes of the IR remote
+/// controller's buttons.
 typedef enum {
 	noCommand = 0,
 	repeat = 1,
@@ -24,11 +24,11 @@ typedef enum {
 	action = 199,
 } Command;
 
-// Add a new command to the buffer
-// It will not be processed immediately.
+/// Add a new command to the buffer
+/// It will not be processed immediately.
 void addCommand(Command command);
 
-// Process every command in the buffer at once in a FIFO manner
+/// Process every command in the buffer at once in a FIFO manner
 void handleCommands();
 
 #endif

@@ -14,13 +14,13 @@ typedef struct {
 
 bool areIntersecting(Rectangle r1, Rectangle r2);
 
-// Return true only if inner is fully inside of outer
+/// Return true only if inner is fully inside of outer
 bool isInside(Rectangle inner, Rectangle outer);
 
-// Return the geometrical middle point of the given rectangle
+/// Return the geometrical middle point of the given rectangle
 Vec2 getCenter(Rectangle r);
 
-// Return a new rectangle shifted by vector translate
+/// Return a new rectangle shifted by vector translate
 Rectangle translateRectangle(Rectangle r, Vec2 translate);
 
 #endif

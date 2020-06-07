@@ -4,7 +4,7 @@
 #include <avr/io.h>
 
 
-// AUTO-GENERATED
+/// AUTO-GENERATED
 
 const uint16_t small_character_moving[4][5][1];
 const uint16_t spaceship_idle[1][36][3];

@@ -4,11 +4,11 @@
 #include <avr/io.h>
 
 
-// Mustn't be zero, should be lower than 65535
+/// Mustn't be zero, should be lower than 65535
 #define SEED 42
 
-// Simple LFSR with some improvements to enhance distribution
-// while maintaining short execution time
+/// Simple LFSR with some improvements to enhance distribution
+/// while maintaining short execution time
 uint8_t getRandomNumber();
 
 #endif

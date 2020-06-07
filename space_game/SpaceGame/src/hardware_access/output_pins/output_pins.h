@@ -7,7 +7,7 @@
 
 #define CLK_ST_PIN PB0
 
-// Uses a 74HC595 to extend the number of digital outputs
+/// Uses a 74HC595 to extend the number of digital outputs
 void sendCurrentValue();
 
 inline void initializeOutputPins() {

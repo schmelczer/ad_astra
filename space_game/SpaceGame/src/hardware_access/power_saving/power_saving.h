@@ -6,8 +6,8 @@
 
 
 inline void initializePowerSaving() {
-	setBit(ACSR, ACD);	// disable ADC to save power
-	PRR = BV(PRADC);	// disable power to ADC (again?)
+	setBit(ACSR, ACD);	/// disable ADC to save power
+	PRR = BV(PRADC);	/// disable power to ADC (again?)
 }
 
 #endif

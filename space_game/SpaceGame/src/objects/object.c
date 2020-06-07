@@ -22,7 +22,7 @@ void drawObject(Object* object, Rectangle compositingWindow) {
 }
 
 Vec2 getSizeFromPrototype(Prototype const* prototype) {
-	// required for casting
+	/// required for casting
 	uint16_t read = pgm_read_word(&prototype->size);
 	Vec2* v = (Vec2*) &read;
 	return *v;

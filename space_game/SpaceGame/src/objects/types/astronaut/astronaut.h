@@ -8,8 +8,8 @@
 #define ASTRONAUT_SIZE ((Vec2){5, 5})
 #define MOVE_FRAME_COUNT 4
 
-// Between two consecutive actions (or movements)
-// there has to be at least this many milliseconds
+/// Between two consecutive actions (or movements)
+/// there has to be at least this many milliseconds
 #define TIME_BETWEEN_ACTION_CHANGE 40
 
 typedef enum {

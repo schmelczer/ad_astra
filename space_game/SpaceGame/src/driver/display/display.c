@@ -9,12 +9,12 @@
 
 
 static uint8_t const configuration[] PROGMEM = {
-	0xD5, 0xF0,			// set clock frequency
-	0x8D, 0x14,			// enable charge pump
-	0x20, 0x00,			// horizontal addressing mode
-	0xD6, 0x01,			// 2 times vertical zoom
-	0x22, 0x00, 0x03,	// only draw to the top half of the screen
-	0xAF				// display on
+	0xD5, 0xF0,			/// set clock frequency
+	0x8D, 0x14,			/// enable charge pump
+	0x20, 0x00,			/// horizontal addressing mode
+	0xD6, 0x01,			/// 2 times vertical zoom
+	0x22, 0x00, 0x03,	/// only draw to the top half of the screen
+	0xAF				/// display on
 };
 
 static struct {
@@ -43,8 +43,8 @@ void initializeDisplay(DrawFunction drawEverything) {
 	setOutputPin(DISPLAY_RESET_OUTPUT_PIN, false);
 	for (volatile uint8_t i = 0; i != 255; i++)
 		;
-	// some time has to elapse before the next line gets called,
-	// otherwise the display wont turn on
+	/// some time has to elapse before the next line gets called,
+	/// otherwise the display wont turn on
 	setOutputPin(DISPLAY_RESET_OUTPUT_PIN, true);
 	
 	for (uint8_t i = 0; i < sizeof(configuration); i++) {

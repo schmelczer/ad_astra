@@ -67,5 +67,5 @@ void initializeBackground() {
 const Prototype Background PROGMEM = {
 	.tick = tick,
 	.draw = draw,
-	.size = (Vec2){DISPLAY_WIDTH_IN_PIXELS, DISPLAY_HEIGHT_IN_PIXELS}	// == WINDOW.size
+	.size = (Vec2){DISPLAY_WIDTH_IN_PIXELS, DISPLAY_HEIGHT_IN_PIXELS}	/// == WINDOW.size
 };
