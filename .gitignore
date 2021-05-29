@@ -4,3 +4,4 @@
 **/.idea
 **/.vs
 **/bin
+.DS_Store
